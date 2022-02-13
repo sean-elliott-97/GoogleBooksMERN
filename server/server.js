@@ -6,7 +6,8 @@ const { authMiddleware } = require("./utils/auth");
 const { typeDefs, resolvers } = require("./schemas");
 const app = express();
 const PORT = process.env.PORT || 3001;
-
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 //apollo server
 const server = new ApolloServer({
   typeDefs,
@@ -15,8 +16,7 @@ const server = new ApolloServer({
 });
 console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
 server.applyMiddleware({ app });
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+
 
 // if we're in production, serve client/build as static assets
 if (process.env.NODE_ENV === "production") {
