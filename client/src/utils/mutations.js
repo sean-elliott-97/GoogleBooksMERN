@@ -42,6 +42,7 @@ export const SAVE_BOOK=gql`
           email
           bookCount
           savedBooks{
+              _id
               bookId
               authors
               image
