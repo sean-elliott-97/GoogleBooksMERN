@@ -85,7 +85,7 @@ const SavedBooks = () => {
             );
           })}
         </CardColumns>
-        {error && <div>Failed to save book</div>}
+        {/* {error && <div>Failed to save book</div>} */}
       </Container>
     </>
   );
