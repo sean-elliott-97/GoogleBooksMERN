@@ -9,7 +9,7 @@ export const LOGIN_USER = gql`
         username
       }
     }
-  }
+  }z
 `;
 
 export const ADD_USER = gql`
