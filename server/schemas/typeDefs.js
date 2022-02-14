@@ -1,6 +1,5 @@
 const { gql } = require("apollo-server-express");
 
-//look into input type for the savebook part of mutation
 const typeDefs = gql`
   type Query {
     me: User
