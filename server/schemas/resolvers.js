@@ -6,7 +6,7 @@ const resolvers = {
   Query: {
     me: async (parent, args, context) => {
       if (context.user) {
-        const userData = await User.findOne({_id:context.user._id })
+        const userData = await User.findOne({})
           .select("-__v -password")
           .populate("books");
         return userData;
@@ -39,9 +39,9 @@ const resolvers = {
     },
     saveBook: async (parent, args, context) => {
       if (context.user) {
-        const userNewBook = await User.findOneAndUpdate(
+        const userNewBook = await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $push: { savedBooks: args.input } },
+          { $addToSet: { savedBooks: args.input } },
           { new: true }
         );
         return userNewBook;
@@ -50,9 +50,9 @@ const resolvers = {
     },
     removeBook: async (parent, args, context) => {
       if (context.user) {
-        const userRemoveBook = await User.findOneAndUpdate(
+        const userRemoveBook = await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $pull: { bookId: args.bookId } },
+          { $pull: { savedBooks: args.bookId } },
           { new: true }
         );
         return userRemoveBook;
