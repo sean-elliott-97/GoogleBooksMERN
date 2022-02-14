@@ -14,8 +14,8 @@ import Auth from "../utils/auth";
 import { removeBookId } from "../utils/localStorage";
 
 const SavedBooks = () => {
-  const {id: thoughtId} = useParams();
-  const { loading, data } = useQuery(GET_ME, { variables: { id: userId } });
+  
+  const { loading, data } = useQuery(GET_ME);
   const [removeBook, { error }] = useMutation(REMOVE_BOOK);
   const userData = data?.me || [];
 
